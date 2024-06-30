@@ -1,0 +1,5 @@
+apiVersion: v2
+name: dummy-nginx-chart
+description: Helm chart for deploying NGINX
+version: 0.1.0
+appVersion: "1.0"

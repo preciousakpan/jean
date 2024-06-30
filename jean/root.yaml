@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dummy-app
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/preciousakpan/argo-cd-jean.git
+    targetRevision: HEAD
+    path: jean/applications
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: dummy-app
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dummy-nginx-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/preciousakpan/jean.git
+    targetRevision: HEAD
+    path: jean/HelmCharts/ChartTest1
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dummy-nginx-chart
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
