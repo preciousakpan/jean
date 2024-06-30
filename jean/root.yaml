@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/preciousakpan/argo-cd-jean.git
+    repoURL: https://github.com/preciousakpan/jean.git
     targetRevision: HEAD
     path: jean/applications
   destination: 
